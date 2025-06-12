@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Listado Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Tabla de tareas -->
+  <ion-list lines="full">
+    <ion-item *ngFor="let task of tasks; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+            <h3>{{ task.title || 'Sin título' }}</h3>
+            <p>{{ task.categoryId || 'Sin categoría' }}</p>
+            <ion-note>
+              {{ task.completed ? '✅ Completada' : '🟡 Pendiente' }}
+            </ion-note>
+          </ion-col>
+          <ion-col size="4" class="ion-text-end">
+            <ion-button fill="clear" (click)="toggleComplete(task)">
+              <ion-icon 
+                [name]="task.completed ? 'checkmark-circle' : 'ellipse-outline'" 
+                [color]="task.completed ? 'success' : 'warning'">
+              </ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="deleteTask(i)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje si no hay tareas -->
+  <div *ngIf="tasks.length === 0" class="ion-text-center ion-padding">
+    <ion-icon name="sad-outline" size="large"></ion-icon>
+    <p>No hay tareas registradas.</p>
+    <ion-button routerLink="/tasks/create-task" expand="block">
+      Crear una tarea
+    </ion-button>
+  </div>
+</ion-content>

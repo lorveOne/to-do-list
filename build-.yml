@@ -1,0 +1,19 @@
+# .github/workflows/build-ios.yml
+name: Build iOS IPA
+on: push
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: ionic build
+      - run: npx cap sync ios
+      - run: |
+          cd ios
+          xcodebuild -workspace App.xcworkspace -scheme App -archivePath App.xcarchive archive
+          xcodebuild -exportArchive -archivePath App.xcarchive -exportPath ./output -exportOptionsPlist ExportOptions.plist
+      - uses: actions/upload-artifact@v3
+        with:
+          name: IPA
+          path: ios/output/App.ipa

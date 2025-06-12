@@ -42,6 +42,8 @@ describe('AppComponent', () => {
     expect(menuItems.length).toEqual(12);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/folder/inbox');
     expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/folder/outbox');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/tasks/list-tasks');
+
   });
 
 });

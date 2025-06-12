@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>TAREAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form class="input-item" [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <ion-item>
+      <ion-label position="floating">Task Name</ion-label>
+      <ion-input formControlName="title" required></ion-input>
+     
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">categoryId</ion-label>
+      <ion-textarea formControlName="categoryId" required></ion-textarea>
+    
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Completed</ion-label>
+      <ion-checkbox formControlName="completed"></ion-checkbox>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="form.invalid">Submit</ion-button>
+
+  </form>
+
+
+</ion-content>
