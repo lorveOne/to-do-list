@@ -117,3 +117,41 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+/* En tu archivo global.scss */
+ion-menu ion-content {
+  --padding-top: var(--ion-safe-area-top, 20px);
+  /* O un valor fijo si prefieres */
+  /* --padding-top: 40px; */
+}
+
+/* Específicamente para tu lista */
+ion-list#inbox-list {
+  padding-top: var(--ion-safe-area-top, 20px);
+  margin-top: 20px; /* Espacio adicional */
+}
+
+/* En tu archivo global.scss o variables.scss */
+:root {
+  --ion-safe-area-top: env(safe-area-inset-top);
+  --ion-safe-area-bottom: env(safe-area-inset-bottom);
+  --ion-safe-area-left: env(safe-area-inset-left);
+  --ion-safe-area-right: env(safe-area-inset-right);
+}
+
+/* Ajustes específicos para diferentes tamaños */
+@media (max-width: 576px) {
+  ion-menu {
+    --width: 250px;
+  }
+  
+  ion-item {
+    --padding-start: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  ion-split-pane {
+    --side-width: 300px;
+  }
+}

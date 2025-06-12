@@ -15,11 +15,18 @@
       <ion-input formControlName="title" required></ion-input>
      
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">categoryId</ion-label>
-      <ion-textarea formControlName="categoryId" required></ion-textarea>
-    
-    </ion-item>
+
+     <ion-item>
+    <ion-label position="floating">Category</ion-label>
+    <ion-select formControlName="categoryId" placeholder="Select a category" required>
+      <ion-select-option 
+        *ngFor="let category of categories" 
+        [value]="category.title">
+        {{ category.title }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
     <ion-item>
       <ion-label position="floating">Completed</ion-label>
       <ion-checkbox formControlName="completed"></ion-checkbox>

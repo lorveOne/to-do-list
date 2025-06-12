@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear Categorias</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <!-- Formulario -->
+  <div class="form-container">
+    <h2>{{ isEditing ? 'Editar Datos' : 'Selecciona un elemento para editar' }}</h2>
+    
+    <form class="input-item" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isEditing">
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input formControlName="title" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="description" required></ion-textarea>
+      </ion-item>
+      
+      <div class="button-group">
+        <ion-button expand="block" type="submit" [disabled]="form.invalid">
+          Actualizar
+        </ion-button>
+        
+        <ion-button expand="block" fill="outline" type="button" (click)="cancelEdit()">
+          Cancelar
+        </ion-button>
+      </div>
+    </form>
+    
+    <!-- Mensaje cuando no se está editando -->
+    <div class="edit-instruction" *ngIf="!isEditing && dataList.length > 0">
+      <ion-icon name="create-outline" size="large"></ion-icon>
+      <p>Haz clic en el icono de editar de cualquier elemento de la tabla para modificarlo</p>
+    </div>
+  </div>
+
+  <!-- Tabla de Datos -->
+  <div class="table-container" *ngIf="dataList.length > 0">
+    <h3>Datos Guardados</h3>
+    
+    <!-- Tabla usando ion-grid (responsive) -->
+    <ion-grid>
+      <ion-row class="table-header">
+        <ion-col size="3">
+          <strong>Título</strong>
+        </ion-col>
+        <ion-col size="5">
+          <strong>Descripción</strong>
+        </ion-col>
+        <ion-col size="2">
+          <strong>Fecha</strong>
+        </ion-col>
+        <ion-col size="2">
+          <strong>Acciones</strong>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row *ngFor="let item of dataList; let i = index" 
+               class="table-row" 
+               [class.editing-row]="currentEditIndex === i">
+        <ion-col size="3">
+          {{ item.title }}
+        </ion-col>
+        <ion-col size="5">
+          {{ item.description }}
+        </ion-col>
+        <ion-col size="2">
+          {{ item.date }}
+        </ion-col>
+        <ion-col size="2">
+          <ion-button size="small" 
+                      fill="clear" 
+                      (click)="editItem(item, i)"
+                      [color]="currentEditIndex === i ? 'success' : 'primary'">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" 
+                      fill="clear" 
+                      color="danger" 
+                      (click)="deleteItem(i)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Mensaje cuando no hay datos -->
+  <div class="no-data" *ngIf="dataList.length === 0">
+    <ion-icon name="document-outline" size="large"></ion-icon>
+    <p>No hay datos para mostrar</p>
+    <p>Necesitas agregar datos primero desde otra página</p>
+  </div>
+</ion-content>

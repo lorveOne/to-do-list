@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FormTaskComponent } from './form-task/form-task.component';
-import { ListTasksComponent } from './list-tasks/list-tasks.component';
-
+import { FormTaskComponent } from '../pages/tasks/form-task/form-task.component';
+import { ListTasksComponent } from '../pages/tasks/list-tasks/list-tasks.component';
+import { ListComponent } from './category/list/list.component';
+import { FormComponent } from './category/form/form.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,16 @@ const routes: Routes = [
     path: 'list-tasks',
     pathMatch: 'full',
     component: ListTasksComponent
+  },
+  {
+    path: 'list-categories',
+    pathMatch: 'full',
+    component: ListComponent
+  },
+  {
+    path: 'form-categories',
+    pathMatch: 'full',
+    component: FormComponent
   }
 ];
 @NgModule({
