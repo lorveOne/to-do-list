@@ -1,0 +1,220 @@
+# To-Do List - Ionic Angular App
+
+Una aplicación móvil híbrida de lista de tareas desarrollada con Ionic Framework y Angular, que permite gestionar tareas organizadas por categorías con almacenamiento local.
+
+## 📱 Características
+
+### Funcionalidades Principales
+- ✅ **Gestión de Tareas**: Agregar, marcar como completadas y eliminar tareas
+- 🏷️ **Sistema de Categorías**: Crear, editar y eliminar categorías personalizadas
+- 🔍 **Filtrado por Categorías**: Visualizar tareas filtradas por categoría específica
+- 💾 **Almacenamiento Local**: Persistencia de datos usando Capacitor Storage
+- 📱 **Aplicación Híbrida**: Compatible con Android e iOS
+
+### Funcionalidades Técnicas
+- 🎨 **UI/UX Moderna**: Interfaz intuitiva con componentes Ionic
+- ⚡ **Rendimiento Optimizado**: Carga rápida y gestión eficiente de memoria
+- 📦 **Compilación Multiplataforma**: APK para Android 
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Framework**: Ionic 8.0.0
+- **Frontend**: Angular 19.0.0
+- **Capacitor**: 7.3.0 (para funcionalidades nativas)
+- **Lenguaje**: TypeScript 5.6.3
+- **Icons**: Ionicons 7.0.0
+
+## 📋 Prerrequisitos
+
+Antes de ejecutar la aplicación, asegúrate de tener instalado:
+
+```bash
+# Node.js (versión 18 o superior)
+node --version
+
+# npm (incluido con Node.js)
+npm --version
+
+# Ionic CLI
+npm install -g @ionic/cli
+
+# Capacitor CLI (opcional, ya incluido en devDependencies)
+npm install -g @capacitor/cli
+```
+
+### Para compilación móvil adicional:
+- **Android**: Android Studio con Android SDK
+- **iOS**: Xcode (solo en macOS)
+
+## 🚀 Instalación y Configuración
+
+### 1. Clonar el repositorio
+```bash
+git clone ---rama 
+cd to-do-list
+```
+
+### 2. Instalar dependencias
+```bash
+npm install
+```
+
+### 3. Ejecutar en el navegador
+```bash
+# Servidor de desarrollo
+ionic serve
+# o
+npm start
+```
+
+La aplicación estará disponible en `http://localhost:8100`
+
+## 📱 Compilación para Dispositivos Móviles
+
+### Android
+
+#### Preparación inicial
+```bash
+# Agregar plataforma Android
+ionic capacitor add android
+
+# Construir la aplicación
+ionic build
+
+# Sincronizar archivos
+ionic capacitor sync android
+```
+
+#### Ejecutar en emulador/dispositivo
+```bash
+# Abrir en Android Studio
+ionic capacitor open android
+
+# O ejecutar directamente
+ionic capacitor run android
+```
+
+#### Generar APK
+1. Abrir el proyecto en Android Studio
+2. Ir a `Build > Build Bundle(s) / APK(s) > Build APK(s)`
+3. El APK se generará en `android/app/build/outputs/apk/debug/`
+
+### iOS (Solo en macOS)
+
+#### Preparación inicial
+```bash
+# Agregar plataforma iOS
+ionic capacitor add ios
+
+# Construir la aplicación
+ionic build
+
+# Sincronizar archivos
+ionic capacitor sync ios
+```
+
+#### Ejecutar en simulador/dispositivo
+```bash
+# Abrir en Xcode
+ionic capacitor open ios
+```
+
+#### Generar IPA
+1. Abrir el proyecto en Xcode
+2. Seleccionar el dispositivo de destino
+3. Ir a `Product > Archive`
+4. Seguir el proceso de distribución de Xcode
+
+
+## 🎯 Uso de la Aplicación
+
+### Gestión de Tareas
+1. **Agregar Tarea**: Usa el botón "+" para crear una nueva tarea
+2. **Completar Tarea**: Toca el checkbox para marcar como completada
+3. **Eliminar Tarea**: Desliza la tarea hacia la izquierda o usa el botón eliminar
+
+### Gestión de Categorías
+1. **Crear Categoría**: Accede al menú de categorías y agrega una nueva
+2. **Asignar Categoría**: Al crear/editar una tarea, selecciona una categoría
+3. **Filtrar por Categoría**: Usa el selector de categorías para filtrar las tareas
+
+## ⚡ Optimizaciones de Rendimiento
+
+### Implementadas
+- **Lazy Loading**: Carga perezosa de módulos para reducir el tiempo de carga inicial
+- **OnPush Change Detection**: Optimización de la detección de cambios en Angular
+- **Virtual Scrolling**: Para listas grandes de tareas (si es necesario)
+- **Almacenamiento Eficiente**: Uso de Capacitor Storage para persistencia local
+- **Minificación**: Código optimizado en build de producción
+
+### Recomendaciones para Escalabilidad
+- Implementar paginación para listas muy largas
+- Usar Observables para manejo reactivo de datos
+- Aplicar memoización en cálculos complejos
+- Implementar Service Workers para modo offline
+
+## 🧪 Testing
+
+```bash
+# Ejecutar tests unitarios
+npm test
+
+# Ejecutar linting
+npm run lint
+```
+
+## 📦 Build de Producción
+
+```bash
+# Build optimizado para producción
+ionic build --prod
+
+# Sincronizar con plataformas móviles
+ionic capacitor sync
+```
+
+## 🔧 Configuración Adicional
+
+### Variables de Entorno
+Crea archivos de configuración en `src/environments/`:
+- `environment.ts` (desarrollo)
+- `environment.prod.ts` (producción)
+
+## 🚧 Limitaciones Conocidas
+
+- **Firebase**: No implementado en esta versión (pendiente para futuras iteraciones)
+- **Remote Config**: Feature flags no disponibles sin Firebase
+- **Sincronización en la Nube**: Solo almacenamiento local disponible
+
+## 🔮 Próximas Funcionalidades
+
+- [ ] Integración con Firebase
+- [ ] Feature flags con Remote Config
+- [ ] Sincronización en la nube
+- [ ] Notificaciones push
+- [ ] Modo offline avanzado
+- [ ] Compartir tareas entre usuarios
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Notas de Desarrollo
+
+### Principales Desafíos Enfrentados
+- Configuración inicial de Capacitor para ambas plataformas
+- Implementación del sistema de filtrado por categorías
+- Optimización del rendimiento con listas grandes
+- Gestión del estado local sin base de datos externa
+
+
+
+
+### Estado Actual del Proyecto
+Esta aplicación representa una implementación funcional y sólida de los requerimientos principales, con todas las funcionalidades core completamente operativas. Si bien algunos aspectos como la integración con Firebase quedaron pendientes por limitaciones de tiempo en el desarrollo, la aplicación cumple con los objetivos fundamentales y está lista para uso inmediato. La arquitectura implementada facilita la incorporación futura de las funcionalidades restantes sin requerir refactorización significativa del código existente.
+
+**Nota**: 
